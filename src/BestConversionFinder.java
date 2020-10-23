@@ -32,6 +32,6 @@ public class BestConversionFinder {
     }
 
     public void run(String fromCurrency, String toCurrency) {
-        
+
     }
 }
