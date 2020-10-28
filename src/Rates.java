@@ -1,17 +1,57 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author Angelo
  */
 public class Rates {
 
+    private ArrayList<double[][]> rateTables;
+    private ArrayList<Map<String, Integer>> rateIndexes;
+
+    public Rates() {
+        this.rateTables = new ArrayList<>();
+        this.rateIndexes = new ArrayList<>();
+
+        this.createRateIndexes();
+        this.createRatesTable();;
+    }
+
+    public double[][] getRates(int index) {return this.rateTables.get(index);}
+    public Map<String, Integer> getIndex(int index) {return this.rateIndexes.get(index);}
+
     /**
      * @return Rate index to match the rates table provided by getRates()
      */
-    public static String[] getRatesIndex() {
-        return new String[]{"AUD", "EURO", "MXN", "NZD", "USD", "CNY", "BDT", "NPR", "PEN", "RUB", "EGP"};
+    private void createRateIndexes() {
+        Map<String, Integer> currencies = new HashMap<>();
+        currencies.put("AUD", 0);
+        currencies.put("EURO", 1);
+        currencies.put("MXN", 2);
+        currencies.put("NZD", 3);
+        currencies.put("USD", 4);
+        currencies.put("CNY", 5);
+        currencies.put("BDT", 6);
+        currencies.put("NPR", 7);
+        currencies.put("PEN", 8);
+        currencies.put("RUB", 9);
+        currencies.put("EGP", 10);
+
+        this.rateIndexes.add(currencies);
+        currencies = new HashMap<>();
+
+        currencies.put("AUD", 0);
+        currencies.put("EURO", 1);
+        currencies.put("MXN", 2);
+        currencies.put("NZD", 3);
+        currencies.put("USD", 4);
+
+        this.rateIndexes.add(currencies);
     }
 
-    public static double[][] getRates() {
+    private void createRatesTable() {
         double[][] rates = new double[11][11];
 
         //conversions added row -> col
@@ -76,7 +116,41 @@ public class Rates {
 
         rates[10][1] = 0.1383;// EGP - EUR
 
-        return rates;
+        this.rateTables.add(rates);
+        rates = new double[5][5];
+
+        rates[0][0] = 1.0;
+        rates[0][1] = 0.61;
+        rates[0][2] = 0.0;
+        rates[0][3] = 1.08;
+        rates[0][4] = 0.72;
+
+        rates[1][0] = 1.64;
+        rates[1][1] = 1.0;
+        rates[1][2] = 0.0;
+        rates[1][3] = 1.77;
+        rates[1][4] = 1.18;
+
+        rates[2][0] = 0.0;
+        rates[2][1] = 0.0;
+        rates[2][2] = 1.0;
+        rates[2][3] = 0.0;
+        rates[2][4] = 0.047;
+
+        rates[3][0] = 0.92;
+        rates[3][1] = 0.56;
+        rates[3][2] = 0.0;
+        rates[3][3] = 1.0;
+        rates[3][4] = 0.67;
+
+        rates[4][0] = 1.39;
+        rates[4][1] = 0.85;
+        rates[4][2] = 21.19;
+        rates[4][3] = 1.5;
+        rates[4][4] = 1.0;
+
+        this.rateTables.add(rates);
+
     }
 
     public static double[][] getLectureRates() {
